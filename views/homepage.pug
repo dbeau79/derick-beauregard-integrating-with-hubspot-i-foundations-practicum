@@ -1,18 +1,24 @@
-//- ** This is a sample of a pug template and how it uses the data passed to it from index.js.
-
 doctype html
-html 
-    head 
-        title= `${title}`
+html
+    head
+        title= title
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
-    body    
-        h1 #{title}
-        a(href='http://localhost:3000/update-cobj') Add/Update these cards
-        table
-            tbody
-                each ebook in data
+    body
+        h1 Pets
+        a.add-link(href="/update-cobj") Add to this table
+        if records && records.length
+            table
+                thead
                     tr
-                        td #{ebook.properties.name}
-                        td #{ebook.properties.ebook_description}
-                        td #{ebook.properties.ebook_category}
+                        th Name
+                        th Species
+                        th Bio
+                tbody
+                    each record in records
+                        tr
+                            td #{record.properties.name}
+                            td #{record.properties.species}
+                            td #{record.properties.bio}
+        else
+            p No records yet. Use the link above to add one.
